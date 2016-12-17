@@ -126,9 +126,9 @@ colors = 	{	T_A.symbol : T_A.color ,
 
 # Grid.random(2)
 
-T_A.random(Grid, 4, y_bounds=[1, Grid.height/2])
-T_B.random(Grid, 4, x_bounds=[1, Grid.width/2])
-T_C.random(Grid, 4, y_bounds=[Grid.height*1/3, Grid.height-2], x_bounds=[Grid.width*1/3, Grid.width-2])
+# T_A.random(Grid, 4, y_bounds=[1, Grid.height/2])
+# T_B.random(Grid, 4, x_bounds=[1, Grid.width/2])
+# T_C.random(Grid, 4, y_bounds=[Grid.height*1/3, Grid.height-2], x_bounds=[Grid.width*1/3, Grid.width-2])
 
 T_A.random(Grid,8)
 T_B.random(Grid,6)
