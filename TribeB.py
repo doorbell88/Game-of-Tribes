@@ -89,7 +89,7 @@ class TribeB(CellChecker):
 		self.board = board
 		y = self.position[0]
 		x = self.position[1]
-		margin = 2
+		margin = 2					# Number of cells around self a cell is aware of
 		friend = self.symbol
 		enemies = self.enemies
 		enemy_symbols = []
@@ -105,21 +105,17 @@ class TribeB(CellChecker):
 
 		###############################################################################################
 		# TribeB -- Rules
-		"""	###########################################################################################
-		1. Any live cell with fewer than 2 live neighbors dies, as if caused by underpopulation.
-		2. Any live cell with 2 or 3 live neighbors lives on to the next generation.
-		3. Any live cell with more than 3 live neighbors dies, as if by overpopulation.
-		4. Any dead cell with exactly 3 live neighbors becomes a live cell, as if by reproduction.
-		""" ###########################################################################################
+		###############################################################################################
+
 		
-		# Rule 2, 3
+		# Any live cell with 6-10 live neighbors lives on to the next generation
 		if board.previous[y][x] == self.symbol:					# Previously alive
 			# if 6 <= alive_neighbors <= 10:
 			if 6 <= alive_neighbors <= 10:
 				board.next[y][x] = self.symbol
 				return True
 
-		# Rule 4
+		# Any dead cell with 8-9 live neighbors becomes a live cell, as if by reproduction
 		elif board.previous[y][x] != self.symbol:				# Previously dead or enemy
 			# if 8 <= alive_neighbors <= 9:
 			if 8 <= alive_neighbors <= 9:
@@ -130,12 +126,15 @@ class TribeB(CellChecker):
 				return False
 
 
-		# # Rule 1, 3
+		# # Any live cell with fewer than 6 live neighbors dies, as if caused by underpopulation
+		# # Any live cell with more than 10 live neighbors dies, as if by overpopulation
 		# else:
 		# 	board.next[y][x] = board.previous[y][x]								# Under/Overpopulation
 		# 	return False
 
-		#Enemy eating
+
+		# ENEMY EATING
+		# If enough enemies are neighboring, begin to eat them
 		if board.previous[y][x] == self.symbol:
 			# if 6 <= alive_enemies <= 18:
 
