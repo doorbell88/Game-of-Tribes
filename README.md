@@ -10,3 +10,8 @@ Put all 4 files in the same directory, and run the gameoflife_tribes.py file in 
     Tribe B -- Like a bacterial sludge.  Has a range of sight of 2
 
     Tribe C -- Like a multicellular organism.  Has a range of sight of 3
+
+
+![](https://github.com/doorbell88/Game-of-Tribes/blob/master/Screenshots/Screenshot1.png)
+
+![](https://github.com/doorbell88/Game-of-Tribes/blob/master/Screenshots/Screenshot3.png)
