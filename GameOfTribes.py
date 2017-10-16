@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 from termcolor import colored, cprint
 from random import randint, choice
 import os
-
+import signal
 
 
 # get size of terminal
@@ -17,7 +17,17 @@ WIDTH = int( stdout.read() )
 stdout = Popen('tput lines', shell=True, stdout=PIPE).stdout
 HEIGHT = int( stdout.read() ) - 1
 
+# ------- SPECIAL HANDLING FUNCTIONS ------- #
+def signal_handler(signum, frame):
+    # (Show the cursor again)
+    os.system('echo "\x1b[?25h"')
+    os.system('tput sgr0')
+    sys.exit()
 
+signal.signal(signal.SIGINT, signal_handler)
+
+# Hide the cursor
+os.system('echo -ne "\x1b[?25l"')
 
 
 ##### CLASSES #####
@@ -59,8 +69,9 @@ class Window(object):
 	# Print "previous" to the terminal
 	def display(self):
 		# Clear screen and scrollback buffer
-		os.system("clear && printf '\e[3J' ")
+		#os.system("clear && printf '\e[3J' ")
 		# os.system("clear")
+		os.system("tput cup 0 0")
 
 		# print
 		for row in range( len(self.previous) ):
@@ -97,7 +108,6 @@ class Window(object):
 				if self.previous[y][x] == tribe.symbol:
 					census += 1
 		return census
-
 
 
 
